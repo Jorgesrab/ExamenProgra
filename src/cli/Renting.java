@@ -5,6 +5,7 @@ import servicios.*;
 
 import utiles.Marcas;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Renting {
@@ -17,12 +18,15 @@ public class Renting {
         cargarDatos();
         cargarDatos(); // los introduzco dos veces para comprobar que funciona lo de que no se repitan los datos
 
+
         Scanner sc = new Scanner(System.in);
         System.out.println("-------------------------------------------------------------------------------");
 
         login("profesorAna","contraseniaSegura");
 
-        anidairVehiculo();
+        //anidairVehiculo();
+
+        mostrarAAlquilados();
 
 
 
@@ -119,6 +123,19 @@ public class Renting {
         String matricula = entrada.nextLine();
 
         servicioVehiculo.eliminarVehicilo(matricula);
+
+    }
+
+    private static void mostrarAAlquilados(){
+        ArrayList<Vehiculo> lista = servicioVehiculo.alquiladosPorMatricula();
+
+        if (lista.isEmpty()){
+            System.out.println("No hay ningun vehiculo alquilado");
+        }else {
+            for (Vehiculo v : lista) {
+                System.out.println(v.toString());
+            }
+        }
 
     }
 
