@@ -19,4 +19,20 @@ public class ServicioVehiculo implements IServicioVehiculo {
         }
 
     }
+
+    public void eliminarVehicilo(String matricula) {
+        Vehiculo vehiculo = vehiculos.get(matricula);
+        if (!vehiculos.containsKey(matricula)){
+            System.out.println("Lo siento el vehiculo qu edesea eliminar no existe");
+        }else if (vehiculo.isAlquilado()){
+            System.out.println("el vehiculo no se puede eliminar pq esta alquilado ");
+
+        }else {
+            vehiculos.remove(matricula);
+        }
+
+    }
+
+
+
 }

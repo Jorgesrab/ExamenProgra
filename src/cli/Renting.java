@@ -11,12 +11,19 @@ public class Renting {
     private static final ServicioVehiculo servicioVehiculo = new ServicioVehiculo();
     private static final ServicioEmpleado sercicioEmpleado = new ServicioEmpleado();
     private static final ServicioCliente servicioCliente = new ServicioCliente();
+    private static final Scanner entrada = new Scanner(System.in);
 
     public static void main(String[] args) {
         cargarDatos();
         cargarDatos(); // los introduzco dos veces para comprobar que funciona lo de que no se repitan los datos
 
         Scanner sc = new Scanner(System.in);
+        System.out.println("-------------------------------------------------------------------------------");
+
+        login("profesorAna","contraseniaSegura");
+
+        anidairVehiculo();
+
 
 
 
@@ -62,6 +69,7 @@ public class Renting {
 
     private static void login(String usuario, String contrasenia){
 
+
         Empleado empleado = sercicioEmpleado.empleados.get(usuario);
 
         if (!sercicioEmpleado.empleados.containsKey(usuario)){
@@ -71,11 +79,46 @@ public class Renting {
                 System.out.println("acceso concedido");
                 menuGestion();
 
+            }else {
+                System.out.println("acceso denegado");
             }
         }
 
     }
     private static void menuGestion(){
+        System.out.println("Prueba de que funciona el login pq me da pereza hacerlo");
+    }
+
+    private static void anidairVehiculo(){
+
+        System.out.println("introduce el modelo");
+        String modelo= entrada.nextLine();
+
+        System.out.println("introduce el color");
+        String color= entrada.nextLine();
+
+        System.out.println("introduce la matricula");
+        String matricula= entrada.nextLine();
+
+        System.out.println("introduce la marca");
+        Marcas marca= Marcas.valueOf(entrada.nextLine());
+
+        System.out.println("introduce el precio por dia");
+        double precioPD= entrada.nextDouble();
+
+        Vehiculo vehiculo = new Vehiculo(modelo,color,matricula,marca,precioPD);
+        servicioVehiculo.addVehiculo(vehiculo);
+
+
+
+    }
+
+    private static void eliminarVehiculo(){
+
+        System.out.println("Introduce la matricula que deseas elimiar");
+        String matricula = entrada.nextLine();
+
+        servicioVehiculo.eliminarVehicilo(matricula);
 
     }
 
